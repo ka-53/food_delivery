@@ -1,45 +1,36 @@
 <?php
-session_start();
-require 'includes/db.php';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
-
-    if ($user && password_verify($password, $user['password'])) {
-        // Успешный вход
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_name'] = $user['name'];
-        $_SESSION['role'] = $user['role'];
-
-        header("Location: index.php");
-        exit;
-    } else {
-        $error = "Неверный email или пароль.";
-    }
-}
+$pageTitle = "Вход | FoodExpress";
+ob_start();
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Вход</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-<body>
-    <h2>Вход</h2>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required><br>
-        <input type="password" name="password" placeholder="Пароль" required><br>
-        <button type="submit">Войти</button>
+<div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-8">
+    <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold text-gray-800">Вход в аккаунт</h2>
+        <p class="text-gray-600">Введите свои данные для входа</p>
+    </div>
+    <form action="auth.php" method="POST" class="space-y-6">
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" id="email" name="email" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Пароль</label>
+            <input type="password" id="password" name="password" required 
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+        </div>
+        <button type="submit" 
+                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition shadow-md hover:shadow-lg">
+            Войти
+        </button>
     </form>
-    <p>Нет аккаунта? <a href="register.php">Зарегистрироваться</a></p>
-</body>
-</html>
+    <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600">
+            Еще нет аккаунта? 
+            <a href="register.php" class="font-medium text-indigo-600 hover:text-indigo-500">Зарегистрируйтесь</a>
+        </p>
+    </div>
+</div>
+<?php
+$content = ob_get_clean();
+include 'template.php';
+?>

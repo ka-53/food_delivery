@@ -1,46 +1,29 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+$pageTitle = "Корзина | FoodExpress";
+ob_start();
 ?>
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Корзина</title>
-    <script src="assets/js/cart.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-<body>
-    <h1>Ваша корзина</h1>
-    <div id="cart-items"></div>
-    <p>Итого: $<span id="cart-total">0.00</span></p>
-
-    <form action="checkout.php" method="POST" onsubmit="return submitCart()">
-        <input type="hidden" name="cart_data" id="cart_data">
-        <button type="submit">Оформить заказ</button>
-    </form>
-
-    <a href="index.php">← Вернуться к ресторанам</a>
-
-    <script>
-        // Показываем содержимое корзины при загрузке страницы
-        showCart();
-
-        // Перед отправкой формы передаем данные корзины в скрытое поле
-        function submitCart() {
-            const cart = localStorage.getItem('cart');
-            if (!cart || JSON.parse(cart).length === 0) {
-                alert("Корзина пуста!");
-                return false;
-            }
-            document.getElementById('cart_data').value = cart;
-            return true;
+<h1 class="text-2xl font-bold mb-6">Ваша корзина</h1>
+<div id="cart-items"></div>
+<p>Итого: <span id="cart-total">0</span> ₽</p>
+<form action="checkout.php" method="POST" onsubmit="return submitCart()">
+    <input type="hidden" name="cart_data" id="cart_data">
+    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg mt-4">Оформить заказ</button>
+</form>
+<a href="menu.php" class="text-indigo-600 hover:underline mt-4 block">← Продолжить выбор</a>
+<script src="assets/js/cart.js"></script>
+<script>
+    showCart();
+    function submitCart() {
+        const cart = localStorage.getItem('cart');
+        if (!cart || JSON.parse(cart).length === 0) {
+            alert("Корзина пуста!");
+            return false;
         }
-    </script>
-</body>
-</html>
+        document.getElementById('cart_data').value = cart;
+        return true;
+    }
+</script>
+<?php
+$content = ob_get_clean();
+include 'template.php';
+?>
