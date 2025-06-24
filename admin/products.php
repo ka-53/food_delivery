@@ -27,30 +27,30 @@ if (isset($_POST['add_dish'])) {
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Админ — Блюда</title>
+    <title>Admin Dishes</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <h1>Управление блюдами</h1>
-    <a href="order.php">Смотреть заказы</a> | <a href="../index.php">На сайт</a>
-    <h2>Добавить новое блюдо</h2>
+    <h1>Dish Management</h1>
+    <a href="order.php">View orders</a> | <a href="../index.php">To the website</a>
+    <h2>Add a new dish</h2>
     <form method="POST">
         <select name="restaurant_id" required>
             <?php foreach ($pdo->query("SELECT * FROM restaurants") as $r): ?>
                 <option value="<?= $r['id'] ?>"><?= htmlspecialchars($r['name']) ?></option>
             <?php endforeach; ?>
         </select>
-        <input type="text" name="name" placeholder="Название блюда" required>
-        <input type="number" step="0.01" name="price" placeholder="Цена" required>
-        <button type="submit" name="add_dish">Добавить блюдо</button>
+        <input type="text" name="name" placeholder="Name of the dish" required>
+        <input type="number" step="0.01" name="price" placeholder="Price" required>
+        <button type="submit" name="add_dish">Add a new dish</button>
     </form>
-    <h2>Список блюд</h2>
+    <h2>List of dishes</h2>
     <table>
         <tr>
             <th>ID</th>
-            <th>Блюдо</th>
-            <th>Цена</th>
-            <th>Действия</th>
+            <th>Dish</th>
+            <th>Price</th>
+            <th>Actions</th>
         </tr>
         <?php foreach ($pdo->query("SELECT * FROM dishes") as $dish): ?>
         <tr>
@@ -58,7 +58,7 @@ if (isset($_POST['add_dish'])) {
             <td><?= htmlspecialchars($dish['name']) ?></td>
             <td>$<?= number_format($dish['price'], 2) ?></td>
             <td>
-                <a href="?delete=<?= $dish['id'] ?>" onclick="return confirm('Удалить блюдо?')">Удалить</a>
+                <a href="?delete=<?= $dish['id'] ?>" onclick="return confirm('Remove the dish?')">Delete</a>
             </td>
         </tr>
         <?php endforeach; ?>

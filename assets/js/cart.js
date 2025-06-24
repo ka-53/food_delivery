@@ -7,7 +7,7 @@ function addToCart(dishId, dishName, price) {
         cart.push({ dishId, dishName, price, quantity: 1 });
     }
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`Добавлено в корзину: ${dishName}`);
+    alert(`Added to cart: ${dishName}`);
 }
 
 function showCart() {
@@ -15,7 +15,7 @@ function showCart() {
     let html = '';
     let total = 0;
     if (cartItems.length === 0) {
-        html = '<p>Корзина пуста</p>';
+        html = '<p>The basket is empty</p>';
     } else {
         cartItems.forEach(item => {
             let itemTotal = item.price * item.quantity;

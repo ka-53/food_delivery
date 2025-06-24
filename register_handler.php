@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Простая валидация
     if (!$name || !$email || !$password) {
-        $_SESSION['reg_error'] = "Заполните все поля!";
+        $_SESSION['reg_error'] = "Fill in all the fields!";
         header("Location: register.php");
         exit;
     }
@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->execute([$email]);
     if ($stmt->fetch()) {
-        $_SESSION['reg_error'] = "Пользователь с таким email уже существует.";
+        $_SESSION['reg_error'] = "This email is already registered!";
         header("Location: register.php");
         exit;
     }

@@ -15,19 +15,19 @@ $orders = $stmt->fetchAll();
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Админ — Заказы</title>
+    <title>Admin Orders</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    <h1>Заказы</h1>
-    <a href="products.php">Управление блюдами</a> | <a href="../index.php">На сайт</a>
+    <h1>Orders</h1>
+    <a href="products.php">Dish Management</a> | <a href="../index.php">На сайт</a>
     <table>
         <tr>
             <th>ID</th>
-            <th>Пользователь</th>
-            <th>Сумма</th>
-            <th>Статус</th>
-            <th>Дата</th>
+            <th>User</th>
+            <th>Sum</th>
+            <th>Status</th>
+            <th>Date</th>
         </tr>
         <?php foreach ($orders as $order): ?>
         <tr>

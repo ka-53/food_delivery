@@ -1,6 +1,6 @@
 <?php
 require 'includes/db.php';
-$pageTitle = "Меню | FoodExpress";
+$pageTitle = "Menu | FoodExpress";
 ob_start();
 
 $category = $_GET['category'] ?? null;
@@ -14,7 +14,7 @@ $stmt = $pdo->prepare($query);
 $stmt->execute($params);
 $dishes = $stmt->fetchAll();
 ?>
-<h2 class="text-2xl font-bold mb-8 text-gray-800">Меню</h2>
+<h2 class="text-2xl font-bold mb-8 text-gray-800">Menu</h2>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     <?php foreach ($dishes as $dish): ?>
     <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition card-hover">
@@ -28,7 +28,7 @@ $dishes = $stmt->fetchAll();
             </div>
             <p class="text-gray-600 text-sm mb-4"><?= htmlspecialchars($dish['description'] ?? '') ?></p>
             <button onclick="addToCart(<?= $dish['id'] ?>, '<?= addslashes($dish['name']) ?>', <?= $dish['price'] ?>)" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm transition">
-                В корзину
+                Add to Cart
             </button>
         </div>
     </div>

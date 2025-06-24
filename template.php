@@ -39,10 +39,10 @@ ini_set('display_errors', 1);
             </a>
             
             <nav class="hidden md:flex space-x-8">
-                <a href="index.php" class="text-gray-600 hover:text-indigo-600 transition">Главная</a>
-                <a href="menu.php" class="text-gray-600 hover:text-indigo-600 transition">Меню</a>
-                <a href="orders.php" class="text-gray-600 hover:text-indigo-600 transition">Мои заказы</a>
-                <a href="cart.php" class="text-gray-600 hover:text-indigo-600 transition">Корзина</a>
+                <a href="index.php" class="text-gray-600 hover:text-indigo-600 transition">Main</a>
+                <a href="menu.php" class="text-gray-600 hover:text-indigo-600 transition">Menu</a>
+                <a href="orders.php" class="text-gray-600 hover:text-indigo-600 transition">My orders</a>
+                <a href="cart.php" class="text-gray-600 hover:text-indigo-600 transition">Basket</a>
             </nav>
             
             <div class="flex items-center space-x-4">
@@ -56,9 +56,9 @@ ini_set('display_errors', 1);
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 <?php else: ?>
-                    <a href="login.php" class="text-gray-600 hover:text-indigo-600 px-3 py-1 rounded transition">Войти</a>
+                    <a href="login.php" class="text-gray-600 hover:text-indigo-600 px-3 py-1 rounded transition">Log in</a>
                     <a href="register.php" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition shadow">
-                        Регистрация
+                        Registration
                     </a>
                 <?php endif; ?>
                 <button class="md:hidden text-gray-600 focus:outline-none">
@@ -71,10 +71,10 @@ ini_set('display_errors', 1);
     <!-- Mobile Menu -->
     <div class="md:hidden bg-white shadow-lg hidden" id="mobileMenu">
         <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-            <a href="index.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Главная</a>
-            <a href="menu.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Меню</a>
-            <a href="orders.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Мои заказы</a>
-            <a href="cart.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Корзина</a>
+            <a href="index.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Main</a>
+            <a href="menu.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Menu</a>
+            <a href="orders.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">My orders</a>
+            <a href="cart.php" class="py-2 text-gray-600 hover:text-indigo-600 transition border-b">Basket</a>
         </div>
     </div>
 
@@ -89,25 +89,25 @@ ini_set('display_errors', 1);
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <h3 class="text-xl font-bold mb-4">FoodExpress</h3>
-                    <p class="text-gray-400">Доставка вкусной еды в любое время дня и ночи.</p>
+                    <p class="text-gray-400">Delivery of delicious food at any time of the day or night.</p>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Контакты</h4>
+                    <h4 class="font-semibold mb-4">Contacts</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-phone-alt mr-2"></i> +7 (123) 456-7890</li>
-                        <li><i class="fas fa-envelope mr-2"></i> info@foodexpress.ru</li>
-                        <li><i class="fas fa-map-marker-alt mr-2"></i> г. Москва, ул. Примерная, 123</li>
+                        <li><i class="fas fa-phone-alt mr-2"></i> +39 (351) 215-7377</li>
+                        <li><i class="fas fa-envelope mr-2"></i> kanybekov73@outlook.com</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Italy, Messina</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Часы работы</h4>
+                    <h4 class="font-semibold mb-4">working hour</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li>Пн-Пт: 9:00 - 23:00</li>
-                        <li>Сб-Вс: 10:00 - 00:00</li>
+                        <li>Mon-Fri: 9:00 - 23:00</li>
+                        <li>Sat-Sun: 10:00 - 00:00</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Мы в соцсетях</h4>
+                    <h4 class="font-semibold mb-4">We're on social media</h4>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-vk text-xl"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-telegram text-xl"></i></a>
@@ -116,7 +116,7 @@ ini_set('display_errors', 1);
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; <?php echo date('Y'); ?> FoodExpress. Все права защищены.</p>
+                <p>&copy; <?php echo date('Y'); ?> FoodExpress. All rights reserved.</p>
             </div>
         </div>
     </footer>
