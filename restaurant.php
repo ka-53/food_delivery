@@ -40,7 +40,7 @@ $dishes = $stmt->fetchAll();
         <?php foreach ($dishes as $dish): ?>
             <div class="dish">
                 <h3><?= htmlspecialchars($dish['name']) ?></h3>
-                <p>Price: $<?= number_format($dish['price'], 2) ?></p>
+                <p>Price: €<?= number_format($dish['price'], 2) ?></p>
                 <button onclick="addToCart(<?= $dish['id'] ?>, '<?= addslashes($dish['name']) ?>', <?= $dish['price'] ?>)">Add to Cart</button>
             </div>
         <?php endforeach; ?>

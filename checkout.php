@@ -1,27 +1,42 @@
 <?php
-require 'includes/db.php';
 session_start();
+require 'db.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cart_data = $_POST['cart_data'] ?? '';
+    $address = trim($_POST['address'] ?? '');
+    $phone = trim($_POST['phone'] ?? '');
+
+    if (!$address || !$phone) {
+        die("Please fill in the address and phone number.");
+    }
+
     $cart = json_decode($cart_data, true);
     if (!$cart || count($cart) === 0) {
-        echo "The shopping cart is empty.";
-        exit;
+        die("The basket is empty.");
     }
+
     $total = 0;
-    foreach ($cart as $item) $total += $item['price'] * $item['quantity'];
-    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total, status) VALUES (?, ?, ?)");
-    $stmt->execute([$_SESSION['user_id'], $total, 'New']);
+    foreach ($cart as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+
+    // Добавляем поля address и phone в таблицу orders
+    $stmt = $pdo->prepare("INSERT INTO orders (user_id, total, status, address, phone) VALUES (?, ?, 'New', ?, ?)");
+    $stmt->execute([$_SESSION['user_id'], $total, $address, $phone]);
     $order_id = $pdo->lastInsertId();
-    // Здесь можно добавить запись в order_items
+
     echo "<script>
-        alert('The order was successfully placed! Order number: $order_id');
+        alert('Order №$order_id successfully issued! It will be delivered within 10-15 minutes.');
         localStorage.removeItem('cart');
-        window.location.href = 'orders.php';
+        window.location.href = 'order_success.php';
     </script>";
     exit;
 }
+
+header("Location: cart.php");
